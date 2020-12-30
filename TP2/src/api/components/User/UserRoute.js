@@ -3,9 +3,13 @@ const UserController = require('./UserController');
 
 const router = express.Router();
 
-router.route("/users")
+router.route('/users')
     .get([
-        UserController.reasAll
+        UserController.readAll
     ])
-    
+router.route('/users/:id')
+    .get([
+        UserController.readOneById
+    ])
+
 module.exports = router;
