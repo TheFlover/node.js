@@ -1,4 +1,5 @@
 //Ping
-exports.ping = (req,res) => {
-    res.status(200).json({ result: 'pong'});
+exports.ping = (req,res) => 
+{
+    return res.status(200).json({ result: 'pong'});
 };
