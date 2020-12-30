@@ -11,13 +11,13 @@ function randomNumber(min,max)
 }
 
 const node_env = 'dev';
-const randomPort = randomNumber(3000,3000);
+const randomPort = randomNumber(3000,4001);
 
 app.get('/ping', (req, res) => {
-    res.status(200);
-    res.send('pong');
+    res.status(200).json({"result": "Pong"});
 });
 
+app.use(morgan('dev'));
 
 app.listen(randomPort, () => {
     console.log(`listening on port ${randomPort} in ${node_env} node`);
