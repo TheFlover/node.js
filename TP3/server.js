@@ -1,4 +1,5 @@
 const config = require('./src/config/env.config');
+require('./db');
 const router = require('./src/api/router');
 const express = require('express');
 const app = express();
