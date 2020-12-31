@@ -7,6 +7,9 @@ router.route('/users')
     .get([
         UserController.readAll
     ])
+    .post([
+        UserController.createOne
+    ])
 router.route('/users/:id')
     .get([
         UserController.readOneById
