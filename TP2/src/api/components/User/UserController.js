@@ -9,11 +9,11 @@ exports.readAll = (req,res) =>
 //READ one by Id
 exports.readOneById = (req,res) =>
 {
-    const user = users.find(user => user.id == req.params.id);
+    let user = users.find(user => user.id == req.params.id);
 
     if (!user)
     {
-        res.status(404).json({result: `id ${req.params.id} not found`});
+        return res.status(404).json({result: `id ${req.params.id} not found`});
     }
     res.status(200).json(user);
 }
@@ -38,56 +38,36 @@ exports.createOne = (req, res) =>
 }
 exports.editOne = (req, res) =>
 {
-    const user = users.find(user => user.id == req.params.id);
+    let user = users.find(user => user.id == req.params.id);
 
     if (!user)
     {
-        res.status(404).json({result: `id ${req.params.id} not found`});
+        return res.status(404).json({result: `id ${req.params.id} not found`});
     }
-    else
-    {
-        if(req.body.firstName != null)
+    for(const key in req.body)
         {
-            user.firstName = req.body.firstName;
+            if(user.hasOwnProperty(key))
+            {
+                if(key != 'id')
+                {
+                    user[key] = req.body[key];
+                }
+            }
+            
         }
-        if(req.body.lastName != null)
-        {
-            user.lastName = req.body.lastName;
-        }
-        if(req.body.email != null)
-        {
-            user.email = req.body.email;
-        }
-        if(req.body.password != null)
-        {
-            user.password = req.body.password;
-        }
-        if(req.body.phone != null)
-        {
-            user.phone = req.body.phone;
-        }
-        if(req.body.creationDate != null)
-        {
-            user.creationDate = req.body.creationDate;
-        }
-        if(req.body.role != null)
-        {
-            user.role = req.body.role;
-        }
-
-    console.log(req.body);
-    res.status(201).json(user);
-
-    }
+    res.status(200).json(user);
 }
 
 
 exports.deleteOne =  (req, res) =>
 {
-    const user = users.find(user => user.id == req.params.id);
+    let user = users.find(user => user.id == req.params.id);
     if (!user)
     {
-        res.status(404).json({result: `id ${req.params.id} not found`});
+        return res.status(404).json({result: `id ${req.params.id} not found`});
     }
-    console.log(users[req.params.id - 1])
+    
+    users = users.filter(user => user.id != req.params.id)
+
+    res.status(200).json(users);
 }
