@@ -14,5 +14,11 @@ router.route('/users/:id')
     .get([
         UserController.readOneById
     ])
+    .patch([
+        UserController.editOne
+    ])
+    .delete([
+        UserController.deleteOne
+    ])
 
 module.exports = router;

@@ -49,6 +49,16 @@ let users = [
 		creationDate: '2020-12-28T22:00:00.000Z',
 		role: 'Customer',
 	},
+	{
+		id: 8,
+		firstName: 'Justine',
+		lastName: 'Cailloux',
+		email: 'test@test4.fr',
+		password: 'testtest',
+		phone: '0900000000',
+		creationDate: '2020-12-28T22:00:00.000Z',
+		role: 'Customer',
+	},
 ];
 
 module.exports = users;
